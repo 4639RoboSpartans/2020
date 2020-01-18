@@ -7,7 +7,10 @@
 
 package frc.robot;
 
+import com.revrobotics.ColorSensorV3;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -47,6 +50,14 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+
+    //TODO remove code when no longer needed and change m_ColorWheelSys to private in RobotContainer
+    ColorSensorV3 colorSensor = m_robotContainer.m_ColorWheelSys.getColorSensor();
+    SmartDashboard.putNumber("Red", colorSensor.getColor().red);
+    SmartDashboard.putNumber("green", colorSensor.getColor().green);
+    SmartDashboard.putNumber("Blue", colorSensor.getColor().blue);
+    SmartDashboard.putNumber("IR", colorSensor.getIR());
+    SmartDashboard.putNumber("Proximity", colorSensor.getProximity());
   }
 
   /**
